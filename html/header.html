@@ -1,0 +1,48 @@
+<?php
+  header('Content-Type: text/html; charset=UTF-8');
+?>
+
+<!DOCTYPE html>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<html>
+<head>
+<title>My Notepad Info</title>
+<link rel='stylesheet' type='text/css' href='css/styles-minify.css' />
+<script type='text/javascript' src='js/functions-minify.js' async='async'></script>
+<!--<script type='text/javascript' src='js/base64.js' async='async'></script>-->
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35982763-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+
+<div id='page-container'>
+
+	<div id='header'>
+		<div id='header-banner'>My Notepad Info</div>
+		<div id='header-description'>a simple, free, online notepad</div>
+	</div>
+
+	<div id='nav-bar'>
+		<ul id='nav-menu'>
+			<li><a href='index.php'>Notepad Home</a></li><li><a href='register.php'>Sign Up</a></li><li><a href='account.php'>Your Account</a></li><li><a href='details.php'>Tips</a></li><li><a href='about.php'>About & Contact</a></li>
+		</ul>
+	</div>
+
+	<div id='status-box' style='display: none;'>
+		<div id='progress-indicator'></div> <a name='form-top' class='anchor'><span id='status-label'>Status:</span></a> <span id='status-text'></span>
+	</div>
+
+	<div id='page-content'>

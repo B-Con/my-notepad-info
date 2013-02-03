@@ -1,0 +1,251 @@
+/* PAGE LAYOUT */
+html {
+}
+body {
+	margin:                    0;
+	padding:                   0;
+	text-align:                center;
+	background-color:          #d8d8d8;
+	font-family:               'helvetica', 'sans';
+}
+#page-container {
+	width:                     800px;
+	color:                     #222222;
+	background-color:          #f8f8f8;
+	margin:                    auto;
+	text-align:                left;
+	font-size:                 10pt;
+}
+#page-content {
+	margin:                    0;
+	padding:                   25px;
+}
+/* END Page Layout */
+
+/* HEADER LAYOUT */
+#header {
+	padding:                   30px 0;
+	text-align:                center;
+	background-color:          #333333;
+	color:                     #7FC2F6;
+}
+#header-banner {
+	font-size:                 34px;
+	font-weight:               bold;
+}
+#header-description {
+	font-size:                 16px;
+	margin-top:                6px;
+}
+/* END Header layout */
+
+/* NAV MENU */
+#nav-bar {
+	background-color:          #7FC2F6;   /*#00BFFF; /*#1E90FF; /* #6495ED;*/
+	font-size:                 18px;
+	list-style:                none;
+	padding:                   0 25px;
+}
+#nav-menu {
+	padding:                   0;
+	margin:                    0;
+}
+#nav-menu li {
+	display:                   inline-block;
+	padding:                   0;
+	width:                     20%;   /* There are 5 links. */
+	text-align:                center;
+	color:                     #333333;
+}
+#nav-menu li:first-child {
+	text-align:                left;
+	margin-left:               -5px;   /* Negate padding so the inner text aligns with text line. */
+}
+#nav-menu li:last-child {
+	text-align:                right;
+	margin-right:              -5px;   /* Negate padding so the inner text aligns with text line. */
+}
+/* We need two levels of inline-blocks otherwise some browsers consistently miss the height of the
+ * inner block by one pixel. Don't know why. */
+#nav-menu li a {
+	display:                   inline-block;
+	text-decoration:           none;
+	color:                     #333333;
+	padding:                   5px 5px;
+}
+#nav-menu li a:link,
+#nav-menu li a:visited {
+	color:                     inherit;
+}
+#nav-menu li a:hover {
+	background-color:          #333333;
+	color:                     #7FC2F6;
+	text-decoration:           inherit;
+}
+/* END Nav menu */
+
+/* STATUS BOX */
+/* The status box's border is controlled dynamically. */
+#status-box {
+	text-align:                left;
+	padding:                   10px 25px;
+	/*height:                    16px;   For the progress img. */
+	min-height:16px;
+	height:auto!important;
+	_height:16px;
+	/*border-color:              #d8d8d8;*/
+}
+#status-label {
+	font-weight:               bold;
+	text-decoration:           none;
+	color:                     #333333;
+/*	margin-right:              5px;*/
+}
+#status-text {
+	font-size:                 10pt;
+/*	margin-left:               5px;*/
+	margin:                    0;
+}
+/* END Status box */
+
+/* CONTAINERS AND HEADERS */
+#login-form,
+#customize-console,
+#notepad-container,
+#register-container {
+	margin:                    0 0 12px 0;
+}
+h1 {
+	margin:                    0 0 10px 0;
+	font-weight:               bold;
+	font-size:                 26px;
+	color:                     #333333;
+}
+h2 {
+	margin:                    0;
+	font-weight:               bold;
+	font-size:                 17px;
+	color:                     #333333;
+}
+/* END Containers and headers */
+
+/* LOGIN FORM */
+.login-table {
+	padding-bottom:            10px;
+}
+.login-field {
+	font-size:                 14px;
+	width:                     175px;
+	border:                    1px solid #333333;
+	padding:                   1px 2px;
+	background-color:          #f8f8f8;
+}
+/* The padding accounts for the extra border width so it doesn't change size. */
+.login-field:focus {
+	border-width:              2px;
+	padding:                   0 1px;
+	border:                    2px solid #7FC2F6;
+}
+.login-prompt-text {
+	font-size:                 15px;
+}
+#email-notepad-option {
+	padding:                   1px 8px;
+	margin-left:               8px;
+	border-left:               1px solid #333333;
+}
+#message {
+	font-size:                 14px;
+	border:                    1px solid #333333;
+	padding:                   1px 2px;
+	background-color:          #f8f8f8;
+}
+#message:focus {
+	border-width:              2px;
+	padding:                   0 1px;
+	border:                    2px solid #7FC2F6;
+}
+/* END Login form */
+
+/* Notepad Controls */
+#notepad_size_rows,
+#notepad_size_cols {
+}
+.controls {
+	margin:                    0;
+	padding:                   0;
+	list-style:                none;
+}
+.controls li {
+	display:                   inline;
+	margin:                    0 15px 0 0;
+	padding:                   0;
+}
+.notepad-button {
+   cursor:                     pointer;
+   border:                     1px solid #333333;
+   background-color:           #d8d8d8;
+}
+.notepad-description {
+	margin:                    15px 0 20px 0;
+	padding:                   0 0 0 15px;
+}
+/* END Customize panel */
+
+/* FOOTER LAYOUT */
+#footer {
+   margin:                     40px 0 0 0;
+   text-align:                 center;
+   font-size:                  13px;
+   color:                      #666666;
+}
+/* END Footer layout */
+
+/* REGISTRATION LAYOUT */
+#register-status {
+	margin-top:                15px;
+}
+.registration-notes {
+	font-size:                 13px;
+}
+/* END Registration layout */
+
+/* MISC */
+#progress-indicator {
+	float:                      left;
+	margin-left:                -20px;   /* This will sit to the text border. */
+}
+#notepad {
+	background-color:           #f2f2f2;
+	color:                      #000000;
+	font-family:                'Consolas', 'monospace', 'courier new';
+	font-size:                  14px;
+	border:                     1px solid #333333;
+	overflow:                   auto;
+	width:                      750px;
+	height:                     200px;
+	padding:                    3px 0;
+	margin:                     3px 0;
+}
+/* The link colors are not the same as the theme because they are on a light background.
+ * But they should look similar, due to color juxtaposition optical illusion. */
+a:link {
+	color:                     #6599D0;
+}
+a:visited {
+	color:                     #6599D0;
+}
+a:hover {
+	color:                     inherit;
+}
+/* So that <a name= >'s don't change text. */
+a.anchor {
+	color:                     inherit;
+	text-decoration:           inherit;
+}
+.clicky {
+	background-color:          #d7d7d7;
+	cursor:                    pointer;
+	border:                    1px solid #333333;
+}
+/* END MISC */

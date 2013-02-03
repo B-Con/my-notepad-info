@@ -1,0 +1,5 @@
+# Contains sensative settings.
+api/config.php
+
+# Ignore all logs.
+logs/*.txt
