@@ -185,16 +185,17 @@ class DBWrapper
 	}
 
 	// Execute a prepared query. Use this whenever user or non-trivial input is involved.
-	// SELECT-style queries return the result as array, otherwise, return bool. Failure returns FALSE.
+	// SELECT-style queries return result as array. Otherwise return bool; failure returns FALSE.
+	// Mute error output so we don't return it to the client.
 	public function safeQuery($query, $args, $returns_row = TRUE)
 	{
 		global $logger;
 
 		$result = FALSE;
 
-		$stmt = $this->_pdo_link->prepare($query);
+		$stmt = @$this->_pdo_link->prepare($query);
 		if ($stmt !== FALSE) {
-			$result = $stmt->execute($args);
+			$result = @$stmt->execute($args);
 
 			// If we're returning query data, fetch it. Otherwise, leave return value as a bool.
 			if ($result) {
@@ -573,7 +574,7 @@ function changeUserPassword($username, $new_password)
 	if ($new_salt !== FALSE) {
 		$new_password_hash = derivePasswordHash($new_password, $new_salt);
 
-		$q = "UPDATE users SET password_hash=:new_password_hash,salt=':new_salt'," .
+		$q = "UPDATE users SET password_hash=:new_password_hash,salt=:new_salt," .
 		     "pwd_version='" . CURRENT_PWD_VERSION . "' WHERE username=:username LIMIT 1";
 		$args = array(':new_password_hash' => $new_password_hash,
 		              ':new_salt' => $new_salt,

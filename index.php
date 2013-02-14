@@ -46,29 +46,18 @@
 			<input type='button' class='clicky' value='Save Notepad' onclick="saveNotepadApi('manual');" tabindex='5' accesskey='s' title='Save your notepad data and settings' />
 		</li>
 		<li>
-			Height:
-			<input type='button' value=' + ' class='notepad-button' onclick="adjustNotepadSize('increment', 50, 0)" title='Make notepad wider' />
-			<input type='button' value=' - ' class='notepad-button' onclick="adjustNotepadSize('increment', -50, 0)" title='Make notepad narrower' />
+			<label for='autosave'>Enable auto-saving:</label><input type="checkbox" class="clicky" id='autosave' value='on'>
 		</li>
 		<li>
-			Width:
-			<input type='button' value=' + ' class='notepad-button' onclick="adjustNotepadSize('increment', 0, 50)" title='Make notepad taller' />
-			<input type='button' value=' - ' class='notepad-button' onclick="adjustNotepadSize('increment', 0, -50)" title='Make notepad shorter'  />
-		</li>
-
-		<li>
-			<input type='button' value=' Reset Size ' class='notepad-button' onclick="adjustNotepadSize('set', 0, 0)" title='Make notepad taller' />
+			<span id='notepad-save-status'></span>
 		</li>
 	</ul>
 
 	<textarea id='notepad' style='width: 750px; height: 200px; font-size: 14px;' tabindex='4' accesskey='n'></textarea>
 
 	<ul class='controls'>
-		<!--<li>
-			<input type='button' class='clicky' value='Save Notepad' onclick="save('manual');" title='Save your notepad data and settings' />
-		</li>-->
 		<li>
-			Background Color:
+			Background:
 			<select id='background-colors' class='notepad-button' onchange="setNotepadBackgroundColor(document.getElementById('background-colors').value)">
 				<option value='#000000' style='background-color: #000000;	color: #ffffff;'>Black</option>
 				<option value='#ffffff' style='background-color: #ffffff;						'>White</option>
@@ -94,7 +83,7 @@
 			</select>
 		</li>
 		<li>
-			Font Color:
+			Font:
 			<!-- List taken from http://pietschsoft.com/Blog/Post.aspx?PostID=204 and modified slightly. -->
 			<select id='font-colors' class='notepad-button' onchange="setNotepadFontColor(document.getElementById('font-colors').value)">
 				<option value='#000000' style='background-color: #000000;	color: #ffffff;' selected='selected'>Black</option>
@@ -121,7 +110,18 @@
 			</select>
 		</li>
 		<li>
-			<label for='autosave'>Auto-save notepad:</label> <input type="checkbox" class="clicky" id='autosave' value='on'>
+			Height:
+			<input type='button' value='+' class='notepad-button' onclick="adjustNotepadSize('increment', 50, 0)" title='Make notepad wider' />
+			<input type='button' value='-' class='notepad-button' onclick="adjustNotepadSize('increment', -50, 0)" title='Make notepad narrower' />
+		</li>
+		<li>
+			Width:
+			<input type='button' value='+' class='notepad-button' onclick="adjustNotepadSize('increment', 0, 50)" title='Make notepad taller' />
+			<input type='button' value='-' class='notepad-button' onclick="adjustNotepadSize('increment', 0, -50)" title='Make notepad shorter'  />
+		</li>
+
+		<li>
+			<input type='button' value=' Reset Size ' class='notepad-button' onclick="adjustNotepadSize('set', 0, 0)" title='Make notepad taller' />
 		</li>
 	</ul>
 </div>

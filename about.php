@@ -41,25 +41,26 @@ If you are reporting a <b>bug</b>, please provide the status text from the error
 <h1>About the Site</h1>
 
 <p>
-My Notepad Info is a fast, simple, free notepad service. What do I mean by "simple"? It means that the entire site is basically just a wrapper around a textbox.
-
-<p>
-Instead of e-mailing yourself notes or URLs to bookmark yourself from someone else's computer, you can quickly save and retrieve them here in your notepad. This isn't a novel idea, a quick Google search will turn up dozens and dozens of similar services. But originally it did have a somewhat unique emphasis on speed and simplicity. Many other notepads weren't as simple and easy to use. Some were downright clunky, requiring large pages be loaded and refreshed several times over the course of logging in, modifying notes, saving notes, and logging out. Some were intended only for one-time use or otherwise impractical for someone who needs to constantly store and edit notes.
+My Notepad Info is a fast, simple, free notepad service. What do I mean by "simple"? It means that the entire site is basically just a wrapper around a textbox. Instead of e-mailing yourself notes or URLs to bookmark yourself from someone else's computer, you can quickly save and retrieve them here in your notepad.
 </p>
 
 <p>
-I originally wrote My Notepad Info for myself, and it continues to exist primarily as a personal side-project. Back in the mid 2000s (before smartphones, 4G, and high bandwidth) I got tired of e-mailing myself links from school computers. I couldn't find any online notepad that had exactly what I wanted so I wrote one myself. I wrote the entire thing from scratch in about 8 hours. It was both a quick hack to get the online notepad I wanted and an excuse to learn a bit about AJAX. I never really publicized the site, it was honestly just for myself. Once I realized that other people had been using it for years I came back, cleaned it up a bit, and added some features. It still has the "quick hack" feeling to it (particularly in the theme), but it's just a hobby project. The source code is available <a href='https://github.com/B-Con/my-notepad-info'>on GitHub</a>.
+This isn't a novel idea, a quick Google search will turn up dozens and dozens of similar services. But originally it did have a somewhat unique emphasis on speed and simplicity. Many other notepads weren't as simple and easy to use. Some were downright clunky, requiring large pages be loaded and refreshed several times over the course of logging in, modifying notes, saving notes, and logging out. Some were intended only for one-time use or otherwise impractical for someone who needs to constantly store and edit notes.
 </p>
 
 <p>
-With time this site becomes less relevant. Smartphones and cloud service integration provide so many more convenient ways of doing the same thing. But interestingly, despite having a 4G smartphone and the Google ecosystem, years later I still use it occationally. I presume the need isn't completely dead and I will keep it up so long as I can imagine using it.
+I originally wrote My Notepad Info for myself, and it continues to exist primarily as a personal side-project. Back in the mid 2000s (before smartphones, 4G, and high bandwidth) I got tired of e-mailing myself links from school computers. I couldn't find any online notepad that had exactly what I wanted so I wrote one myself. I wrote the first version from scratch in about 8 hours. It was both a quick hack to get the online notepad I wanted and an excuse to learn a bit about AJAX. I never really publicized the site, it was honestly just for myself. Once I realized that other people had been using it for years I came back, cleaned it up a bit, and added some features. It still has something of a "quick hack" feeling to it (particularly in the theme), but it's just a hobby project. The source code is available <a href='https://github.com/B-Con/my-notepad-info'>on GitHub</a>. I keep a <a href='updates.php'>list of important updates</a>.
+</p>
+
+<p>
+With time this site becomes less relevant. Smartphones and cloud service integration provide so many more convenient ways of doing the same thing. But interestingly, years later, despite having a 4G smartphone and the Google ecosystem,I still use it occationally. I presume the need isn't completely dead and I will keep the site up so long as I can imagine using it.
 </p>
 
 
 <h1>Speed and Simplicity</h1>
 
 <p>
-What does the site do to be "fast and simple"? It's more about what it doesn't do than what it does do. It just uses basic techniques for web optimization, like asynchronous JavaScript, no images, minified JS and CSS files, compressed files where possible, minimal DNS lookups, and a nearly flat backend. For simplicity I just avoid requiring page refreshes and make everything easily accessible through the keyboard. Absolutely nothing fancy at all.
+What does the site do to be "fast and simple"? It's more about what it doesn't do than what it does do. It just uses basic techniques for web optimization, like asynchronous JavaScript, no images, minified JS and CSS files, compressed files where possible, minimal DNS lookups, and a nearly flat backend. For the simplicity aspect I just avoid requiring page refreshes and make everything easily accessible through the keyboard. Absolutely nothing fancy at all.
 </p>
 
 

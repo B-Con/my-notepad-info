@@ -85,7 +85,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 	// Set up logging. Never use lower than level "Info" in real environment; level
 	// "Debug" exposes sensative information like passwords!
 	// Object currently doesn't offer a way to see if it was created successfully.
-	$logger = new KLogger('../logs/', KLogger::INFO);
+	$logger = new KLogger('../logs/', KLogger::DEBUG);
 	if (FALSE) {
 		emailAdmin('Logging failure', 'Failed to initialize logger.');
 		$response->set_generic_error();
@@ -141,7 +141,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 				$response->setField('background_color', $db_row['background_color']);
 				$response->setField('autosave', $db_row['autosave']);
 
-				$logger->LogInfo("User $username logged in.");
+				$logger->LogInfo('User ' . $db_row['username'] . ' logged in.');
 			}
 			else {
 				$logger->LogInfo("Failed login attempt for username $username");
@@ -193,10 +193,10 @@ require 'api-lib.php';         // Constants, classes, and functions.
 
 					if ($result === TRUE) {
 						// Client appends the timestamp to the status (simplifies timezones a lot).
-						$response->setCodeAndStatus('success', "Notepad data $saved_verbage ");
+						$response->setCodeAndStatus('success', "Notepad $saved_verbage ");
 					}
 					else {
-						$response->setCodeAndStatus('failure', 'Notepad data could not be ' .
+						$response->setCodeAndStatus('failure', 'Notepad could not be ' .
 						                               $saved_verbage . '.');
 					}
 				}
@@ -243,8 +243,8 @@ require 'api-lib.php';         // Constants, classes, and functions.
 				// Change the email if it was specified.
 				if (strlen($new_email) > 0 && $success === TRUE) {
 					$q = "UPDATE users SET email=:new_email WHERE username=:username LIMIT 1";
-					$args = array('new_email' => $new_email,
-								  'username' => $username);
+					$args = array(':new_email' => $new_email,
+								  ':username' => $username);
 					$result = $db_link->safeQuery($q, $args, FALSE);
 
 					if ($result === TRUE) {

@@ -4,7 +4,7 @@
 
 <h1>Site Updates</h1>
 
-<h2>Febuary X, 2012</h2>
+<h2>Febuary, 2012</h2>
 
 <p>
 Six or so years after I first wrote My Notepad Info, I've given it a major internal revisement.
@@ -25,9 +25,9 @@ What changed:
 <li> Open sourced, <a href='https://github.com/B-Con/my-notepad-info'>now on GitHub</a>. </li>
 <li> The auto-save option now includes auto-saving on logout, as well as periodically. </li>
 <li> The notepad supports basic click-n-drag resizing in compatable browsers. </li>
-<li> Lots of UI tweaks. The main layout is still similar, but everything has been tweaked. It's not gorgeous, but at a bit cleaner. </li>
+<li> Lots of UI tweaks. The main layout is still similar, but everything has been tweaked. It's not gorgeous, but it's cleaner and more intuitive. </li>
 <li> Fixed a password-reset bug. </li>
-<li> Slightly faster page loading times. (Not by much, but everything should technically load a little faster.) </li>
+<li> Slightly faster in some areas. (Not by much, but in theory everything should load a bit faster.) </li>
 </ul>
 
 <p>

@@ -18,7 +18,7 @@ body {
 }
 #page-content {
 	margin:                    0;
-	padding:                   25px;
+	padding:                   25px 25px 5px 25px;
 }
 /* END Page Layout */
 
@@ -88,12 +88,19 @@ body {
 /* The status box's border is controlled dynamically. */
 #status-box {
 	text-align:                left;
-	padding:                   10px 25px;
-	/*height:                    16px;   For the progress img. */
 	min-height:16px;
 	height:auto!important;
 	_height:16px;
-	/*border-color:              #d8d8d8;*/
+}
+.status-box-normal {
+	padding:                   10px 25px 9px 25px;
+	border-width:              0 0 1px 0;
+	border-style:              solid;
+	border-color:              #d8d8d8;
+}
+.status-box-update {
+	padding:                   9px 24px 9px 24px;
+	border:                    1px solid #d8d8d8;   /* Color will be overwridden dynamically. */
 }
 #status-label {
 	font-weight:               bold;
@@ -190,31 +197,21 @@ h2 {
 	margin:                    15px 0 20px 0;
 	padding:                   0 0 0 15px;
 }
+#notepad-save-status {
+   color:                      #666666;
+}
 /* END Customize panel */
 
 /* FOOTER LAYOUT */
 #footer {
    margin:                     40px 0 0 0;
    text-align:                 center;
-   font-size:                  13px;
+   font-size:                  12px;
    color:                      #666666;
 }
 /* END Footer layout */
 
-/* REGISTRATION LAYOUT */
-#register-status {
-	margin-top:                15px;
-}
-.registration-notes {
-	font-size:                 13px;
-}
-/* END Registration layout */
-
 /* MISC */
-#progress-indicator {
-	float:                      left;
-	margin-left:                -20px;   /* This will sit to the text border. */
-}
 #notepad {
 	background-color:           #f2f2f2;
 	color:                      #000000;
