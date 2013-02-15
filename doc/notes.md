@@ -11,9 +11,7 @@ Bugs / Limitations
 
 To-Do
 ---
-* Custom font styles in the notepad - Probably not a good idea.
-
-* Give each page it's own status box location and feedback. - Current method is consistent but not very UI friendly. Definitely easiest, though.
+* Multiple notepads per account?
 
 
 Misc. Thoughts

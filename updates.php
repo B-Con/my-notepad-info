@@ -7,11 +7,11 @@
 <h2>Febuary, 2012</h2>
 
 <p>
-Six or so years after I first wrote My Notepad Info, I've given it a major internal revisement.
+Six or so years after I first wrote My Notepad Info, I've given it a major revisement.
 </p>
 
 <p>
-The site premise is still the same. I didn't want change what it is, just how it works. The original site was basically a quick hack job, so I rewrote practically all the code for the client and server to clean things up, add some features, and address some bugs. I also redid the majority of the theme, although it's still very simple.
+The site premise is still the same and most of what it does is still the same. I didn't want change what it is, just how it works. The original site was basically a quick hack job, so I rewrote practically all the code for the client and server to clean things up, add some features, and address some bugs. I also redid a lot of the theme.
 </p>
 
 <p>
@@ -46,7 +46,7 @@ Please let me know if the new site breaks for you, feedback is welcome. The new 
 </p>
 
 <p>
-This continues to be a pretty basic service I run for myself, so I haven't done anything good or fancy with the design.
+Unfortunately, there are no significant new features as a part of this update, unless you count the theme sucking less as a "feature". Some may come at a future date.
 </p>
 
 
