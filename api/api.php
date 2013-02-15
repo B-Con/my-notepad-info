@@ -85,7 +85,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 	// Set up logging. Never use lower than level "Info" in real environment; level
 	// "Debug" exposes sensative information like passwords!
 	// Object currently doesn't offer a way to see if it was created successfully.
-	$logger = new KLogger('../logs/', KLogger::DEBUG);
+	$logger = new KLogger('../logs/', KLogger::INFO);
 	if (FALSE) {
 		emailAdmin('Logging failure', 'Failed to initialize logger.');
 		$response->set_generic_error();
@@ -375,6 +375,8 @@ require 'api-lib.php';         // Constants, classes, and functions.
 			$logger->LogDebug("User $username is requesting their notepad e-mailed to them.");
 
 			$db_row = loadUserInfo($username, $response);
+			$user_logged_in = loginUser($username, $password, $response) ? TRUE : FALSE;
+
 			if ($db_row !== FALSE) {
 				$email = $db_row['email'];
 
@@ -382,14 +384,14 @@ require 'api-lib.php';         // Constants, classes, and functions.
 					$notepad_data = $db_row['notepad_data'];
 
 					$mail_sent = emailUser($username, $email, 'Your Notepad Info',
-											sprintf(EMAIL_NOTEPAD, $username, $notepad_data));
+					                       sprintf(EMAIL_NOTEPAD, $username, $notepad_data));
 
 					if ($mail_sent === TRUE) {
 						$logger->LogInfo("Sent notepad data e-mail to $username @ $email");
 
 						// If they sent the request with a password, tell them what e-mail it was
 						// sent to. Ignore a failed login... login isn't required anyway.
-						if ($password && loginUser($username, $password, $response))
+						if ($user_logged_in)
 							$response->setCodeAndStatus('success',
 							                            sprintf(SUC_NOTEPAD_EMAIL_LOGIN, $email));
 						else
@@ -397,7 +399,12 @@ require 'api-lib.php';         // Constants, classes, and functions.
 					}
 					else {
 						$logger->LogError("Could not send notepad data e-mail to $username");
-						$response->setCodeAndStatus('failure', ERR_NOTEPAD_EMAIL);
+
+						if ($user_logged_in)
+							$response->setCodeAndStatus('failure',
+							                            sprintf(ERR_NOTEPAD_EMAIL_LOGIN, $email));
+						else
+							$response->setCodeAndStatus('failure', ERR_NOTEPAD_EMAIL);
 					}
 				}
 				else {

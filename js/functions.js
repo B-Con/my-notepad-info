@@ -14,7 +14,7 @@ var AUTOSAVE_MAX_SIZE = 32000;   // Don't autosave over 32K.
 // How long the status indicator (ie, color of the box) lasts.
 var INDICATOR_FEEDBACK_SECONDS = 5;
 
-var PROGRESS_IMG_URL = 'img/waiting.gif';
+// Not currently used: var PROGRESS_IMG_URL = 'img/waiting.gif';
 
 // Keep database queries below the max. Account for query overhead.
 var MAX_NOTEPAD_SIZE = 900000;   // = 900K
@@ -162,13 +162,16 @@ function setNotepadBackgroundColor(color) {
 // A pair of functions to set which display block is shown on the home page.
 // Adjust the element that is not shown first to avoid any brief flickers of multiple boxes.
 function setBodyToLogin() {
+	window.location.hash = '';
 	$('#notepad-block').slideUp('fast', 'linear');
 	$('#login-block').show();
 }
 
 function setBodyToNotepad() {
 	$('#login-block').hide();
-	$('#notepad-block').slideDown('fast', 'linear');
+	$('#notepad-block').slideDown('fast', 'linear', function(){
+			window.location.hash = 'form-top';
+		});
 }
 
 function resetNotepad() {
@@ -224,8 +227,6 @@ function resetFrontPage() {
 
 	$('#front-page-header').html('Login to My Notepad Info');
 	$('#username').focus();      // Focus for immediate typing.
-
-	window.location.hash = '';   // Reset the window to the top of the page.
 }
 
 function logout() {
@@ -433,7 +434,6 @@ function loginApiResponseHandler(xmlData) {
 
 				// Display the notepad and fit it to the window as best as possible.
 				setBodyToNotepad();
-				window.location.hash = 'form-top';
 				$('#notepad').focus();
 
 				// TODO here: Do we want to set the cursor in the notepad somewhere specific? Top/bottom?

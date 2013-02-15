@@ -19,9 +19,9 @@ define('SALT_LENGTH',                     22);      // 22 is required by bcrypt.
 define('PWD_WORK_FACTOR',                 '11');    // A string to ensure proper string length.
 define('TMP_PWD_LENGTH',                  10);      // Number characters in temp passwords.
 define('MAX_LOGIN_FAILURE_LOCKOUT',       3);       // Number failed logins before being frozen.
-define('LOGIN_COOL_DOWN_PERIOD',          300);     // 5 minutes.
+define('LOGIN_COOL_DOWN_PERIOD',          240);     // 4 minutes.
 
-define('SELF_TIME_INVERVAL',              20);      // For if we time the script's execution time.
+define('SELF_TIME_INVERVAL',              40);      // For if we time the script's execution time.
 
 define('DEV_URANDOM',              '/dev/urandom'); // Host's entropy source.
 
@@ -70,10 +70,11 @@ define('EMAIL_NOTEPAD', "%s,\n\n" .
 						"%s");
 define('SUC_NOTEPAD_EMAIL', "Your e-mail should be on its way. (Check your SPAM if you don't " .
                             'see it.');
-define('SUC_NOTEPAD_EMAIL_LOGIN', "Your e-mail should be on it's way to %s. (Check your SPAM if " .
-                                  "you don't see it.");
+define('SUC_NOTEPAD_EMAIL_LOGIN', "Your e-mail should be on it's way to <b>%s</b>. (Check " .
+                                  "your SPAM if you don't see it.)");
 define('ERR_NOTEPAD_EMAIL', 'E-mail could not be delivered to the e-mail address associated with ' .
                             'this account.');
+define('ERR_NOTEPAD_EMAIL_LOGIN', "Could not send e-mail to <b>%s</b> associated with this account.");
 define('ERR_EMAIL_RATE_LIMIT', 'To avoid e-mail abuse, we limit the number of e-mails that can ' .
                                'be sent to an account since no password is necessary to request ' .
                                'an e-mail). Wait X_TIME and try again.');
@@ -715,7 +716,7 @@ function loginUser($username, $password, $response, $update_login_ctr = false)
 			$backoff_min = (int)ceil($backoff_sec / 60);
 
 			$response->setCodeAndStatus('failure', 'You have failed to login too many times. ' .
-			                               'Wait $backoff_min minutes and try again.');
+			                                       "Wait $backoff_min minutes and try again.");
 		}
 		// Try to log the user in.
 		else {

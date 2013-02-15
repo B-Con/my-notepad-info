@@ -2,9 +2,11 @@
 	include('html/header.html');
 ?>
 
-<h1>
-	<div id='front-page-header'>Login to My Notepad Info</div>
+<a name='form-top'>
+<h1 id='front-page-header'>
+	Login to My Notepad Info
 </h1>
+</a>
 
 <div id='login-block'>
 	<p>
