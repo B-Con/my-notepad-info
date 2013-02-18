@@ -20,7 +20,7 @@ Visible changes:
 
 <ul>
 	<li> Feature: e-mail your notepad contents to yourself (without needing a password). </li>
-	<li> Feature: auto-save option now includes auto-saving on logout, page leaving, as well as periodically. </li>
+	<li> Feature: auto-save option now includes auto-saving on logout and when leaving the page, in addition to about every minute. </li>
 	<li> Feature: notepad supports native browser click-n-drag resizing. </li>
 	<li> Feature/bug: you can now change your e-mail address. </li>
 	<li> Bug: fixed some cases of lost notepad contents. </li>
@@ -45,7 +45,7 @@ Please let me know if the new site breaks for you, feedback is welcome. The new 
 </p>
 
 <p>
-Unfortunately, there are no major new features in this update, unless you count the theme sucking less as a "feature". Some may come at a future date.
+Note that all accounts had their notepad size reset -- sorry about that. I changed how notepad sizes are stored and the conversion wasn't perfectly clean, so everyone got reset to the default size for simplicity. Feel free to change it again.
 </p>
 
 

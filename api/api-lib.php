@@ -104,7 +104,8 @@ $defaults = array (
 	'height' => 200,
 	'width' => 750,
 	'font_color' => '#000000',
-	'background_color' => '#f2f2f2'
+	'background_color' => '#f2f2f2',
+	'autosave' => 1
 );
 
 
@@ -251,12 +252,6 @@ class DBWrapper
 	public function rollBack()
 	{
 		return $this->_pdo_link->rollBack();
-	}
-
-	// Emulate MySQL's legacy API real_escape_string().
-	public function mysqlRealEscapeString($str)
-	{
-		return $this->_pdo_link->quote($str);
 	}
 
 	public function isValid()
@@ -437,12 +432,32 @@ function emailUser($username, $email, $title, $body)
 	return $mail_sent;
 }
 
-// Emulate MySQL's real_escape_string().
+// Old passwords were run through MySQL's real_escape_string(). We need to preserve that ability
+// for old accounts needing to be upgraded. Easiest way right now is to just establish a seperate
+// connection to the DB and call mysql_real_escape_string() directly.
+//     The extra DB performance hit isn't a big deal since this only happens once per account
+// (they're auto-upgraded on first login).
+//     Return the ORIGINAL string on error. Why? Because only a minority of passwords will be different
+// after the escaping so it's worth guessing that nothing needed to be changed. No security risk
+// and high percentage chance of being right.
+//     Drawback: With the current implementation, the rare user with a pwd needing to be escaped
+// who encounters a DB error will get an "incorrect password" error msg instead of a "server error".
 function legacyEscapeString($string)
 {
-	global $db_link;
+	global $logger;
+	global $db_host, $db_name, $db_username, $db_password;
 
-	return $db_link->mysqlRealEscapeString($string);
+	$db_link_legacy = @mysqli_connect($db_host, $db_username, $db_password, $db_name);
+	if (!$db_link_legacy) {
+		$logger->LogError('Legacy DB connection error: ' . mysqli_error($db_link_legacy));
+		return $string;
+	}
+
+	$escaped_str = mysqli_real_escape_string($db_link_legacy, $string);
+
+	mysqli_close($db_link_legacy);
+
+	return $escaped_str;
 }
 
 // Use a URL-safe version of Base64.
@@ -547,7 +562,9 @@ function derivePasswordHash($password, $salt, $pwd_version = CURRENT_PWD_VERSION
 			//     The password was run through real_escape_string() along with all the other
 			// input, despite never being directly put in the database. We have to emulate
 			// that now that we use PDO.
-			$return_hash = md5(legacyEscapeString($password) . $salt);
+			$t = legacyEscapeString($password) . $salt;
+			$logger->LogDebug('PWD derivation on: ' . $t);
+			$return_hash = md5($t);
 		break;
 		case 2:
 			$return_hash = bcrypt($password, $salt);
@@ -556,7 +573,7 @@ function derivePasswordHash($password, $salt, $pwd_version = CURRENT_PWD_VERSION
 			$logger->LogCrit("User has pwd_version=[$pwd_version], which is not handled.");
 	}
 
-	//$logger->LogDebug("Password derivation: salt=[$salt], pwd=[$password], hash=[$return_hash]");
+	$logger->LogDebug("Password derivation: salt=[$salt], pwd=[$password], hash=[$return_hash]");
 
 	return $return_hash;
 }
@@ -670,7 +687,7 @@ function createUser($username, $password, $email)
 					  ':background_color' => $defaults['background_color'],
 					  ':date' => date('Y-m-d'),
 					  ':login_counter' => 0,
-					  ':autosave' => 'true');
+					  ':autosave' => $defaults['autosave']);
 		$result = $db_link->safeQuery($q, $args, false);
 
 		if ($result) {

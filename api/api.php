@@ -38,11 +38,11 @@ DB structure overview:
 	email
 	email_verified        // Whether the supplied email address has been confirmed.
 	notepad_data          // UTF-8_bin
-	height                // Default: 0.
-	width                 // Default: 0.
+	height
+	width
 	font_color
 	background_color
-	autosave
+	autosave              // Default: 1
 	last_seen
 	login_counter         // Default: 0. Helps track usage without being too detailed.
 
@@ -139,7 +139,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 				$response->setField('font_style', $db_row['font_style']);
 				$response->setField('font_color', $db_row['font_color']);
 				$response->setField('background_color', $db_row['background_color']);
-				$response->setField('autosave', $db_row['autosave']);
+				$response->setField('autosave', ($db_row['autosave'] == 1) ? 'true' : 'false');
 
 				$logger->LogInfo('User ' . $db_row['username'] . ' logged in.');
 			}
@@ -187,7 +187,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 								  ':width' => $width,
 								  ':font_color' => $font_color,
 								  ':background_color' => $background_color,
-								  ':autosave' => $_REQUEST['autosave'],
+								  ':autosave' => ($_REQUEST['autosave'] == 'true') ? 1 : 0,
 								  ':username' => $username);
 					$result = $db_link->safeQuery($q, $args, false);
 
