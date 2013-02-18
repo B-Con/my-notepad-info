@@ -226,6 +226,7 @@ h2 {
 	margin:                     3px 0;
 	box-sizing:                 border-box;   /* We want the border/padding to be included. */
 	-moz-box-sizing:            border-box;
+	-webkit-box-sizing:         border-box;
 }
 /* The link colors are not the same as the theme because they are on a light background.
  * But they should look similar, due to color juxtaposition optical illusion. */
