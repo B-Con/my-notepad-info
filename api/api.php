@@ -192,22 +192,22 @@ require 'api-lib.php';         // Constants, classes, and functions.
 					$result = $db_link->safeQuery($q, $args, false);
 
 					if ($result === TRUE) {
-						// Client appends the timestamp to the status (simplifies timezones a lot).
+						// Client appends the timestamp to the status.
 						$response->setCodeAndStatus('success', "Notepad $saved_verbage ");
 					}
 					else {
 						$response->setCodeAndStatus('failure', 'Notepad could not be ' .
-						                               $saved_verbage . '.');
+						                            $saved_verbage . '.');
 					}
 				}
 				else {
-					$logger->LogInfo('Attempted save with too big of a notepad.');
+					$logger->LogInfo('Attempted save of too long a notepad.');
 					$response->setCodeAndStatus('failure', ERR_NOTEPAD_TOO_BIG);
 				}
 			}
 			else {
 				$logger->LogWarn("User $username attempted to save with invalid credentials. " .
-				                 'Password ' . (strlen($password) ? 'was' : "wasn't") . ' supplied');
+				                 'Password ' . (strlen($password) ? 'was' : "wasn't") . ' present.');
 				$response->appendStatus(ERR_SAVE_LOGIN_FAILED);
 			}
 		break;

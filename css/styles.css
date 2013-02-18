@@ -142,7 +142,7 @@ h2 {
 }
 .login-field {
 	font-size:                 14px;
-	width:                     175px;
+	width:                     200px;
 	border:                    1px solid #333333;
 	padding:                   1px 2px;
 	background-color:          #f8f8f8;
@@ -213,16 +213,19 @@ h2 {
 
 /* MISC */
 #notepad {
-	background-color:           #f2f2f2;
-	color:                      #000000;
+/*	These properties are set dynamically as needed.
+ * 	background-color:           #f2f2f2;
+ *	color:                      #000000;
+ *	width:                      750px;
+ *	height:                     200px; */
 	font-family:                'Consolas', 'monospace', 'courier new';
 	font-size:                  14px;
 	border:                     1px solid #333333;
 	overflow:                   auto;
-	width:                      750px;
-	height:                     200px;
-	padding:                    3px 0;
+	padding:                    3px 2px;
 	margin:                     3px 0;
+	box-sizing:                 border-box;   /* We want the border/padding to be included. */
+	-moz-box-sizing:            border-box;
 }
 /* The link colors are not the same as the theme because they are on a light background.
  * But they should look similar, due to color juxtaposition optical illusion. */
