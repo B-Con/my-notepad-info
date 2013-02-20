@@ -282,6 +282,13 @@ function getXmlTagNode(xmlData, nodeName) {
 	}
 }
 
+// This validation check is for the user's sake, not mine. It only needs to be minimally competent.
+function validateEmailAddress(email) {
+	var validationRe = /\S+@\S+\.\S+/;
+	console.debug('Email validate: ' + email);
+    return validationRe.test(email);
+}
+
 
 // -------------------------------------------------------------------
 // API handling
@@ -501,6 +508,13 @@ function registerUserApi() {
 		return;
 	}
 
+	// Verify the e-mail looks valid.
+	if (!validateEmailAddress($('#email').val())) {
+		setStatusText('failure', 'Please specify a valid e-mail address. Remember, the email ' +
+		                         'address is optional.');
+		return;
+	}
+
 	apiQuery = 'action=register' +
 	           '&username=' + Base64.encode($('#username').val()) +
 	           '&password=' + Base64.encode($('#password').val()) +
@@ -558,6 +572,13 @@ function changeProfileApi() {
 		$('#new_password').val('');
 		$('#new_password2').val('');
 		$('#new_password').focus();
+		return;
+	}
+
+	console.debug('Email: ' + $('#new_email').val());
+	if (!validateEmailAddress($('#new_email').val())) {
+		setStatusText('failure', 'Please specify a valid e-mail address. Remember, the email ' +
+		                         'address is optional.');
 		return;
 	}
 
