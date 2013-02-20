@@ -10,7 +10,11 @@
 
 <div id='login-block'>
 	<p>
-	This is a simple, free, online notepad. Log in below or quickly <a href='register.php'>register</a> a free account. For returning visitors, yes, there are <a href='updates.php'>some new changes</a>.
+	This is a simple, free, online notepad. Don't resort to e-mailing URLs or notes to yourself, just quickly save them here.
+	</p>
+
+	<p>
+	Log in below or quickly <a href='register.php'>register</a> a free account. For returning visitors, yes, there are <a href='updates.php'>some new changes</a>.
 	</p>
 
 	<form action='#' onsubmit='loginApi(); return(false);'>

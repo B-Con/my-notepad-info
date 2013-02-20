@@ -9,13 +9,13 @@ Comments? Suggestions? Bugs? Feel free to give feedback on any bugs you find, fe
 </p>
 
 <p>
-If you are reporting a <b>bug</b>, please provide the status text from the error, what you were doing when the error happened, your username, and about how long ago it happened (if it was more than a few minutes). These details are often necessary to resolve the issue.
+If you are reporting a <b>bug</b>, please provide the status text of the error, what you were doing when the error happened, your username, and about how long ago it happened (if it was more than a few minutes). These details are often necessary to resolve the issue.
 </p>
 
 <form action='#' onsubmit='submitFeedbackApi(); return(false);'>
 <table>
 	<tr>
-		<td><span class='login-prompt-text'>Name / Username:</span></td>
+		<td><span class='login-prompt-text'>Username:</span></td>
 		<td><input type='text' class='login-field' id='name' tabindex='1' /></td>
 	</tr>
 	<tr>
@@ -41,7 +41,7 @@ If you are reporting a <b>bug</b>, please provide the status text from the error
 <h1>About the Site</h1>
 
 <p>
-My Notepad Info is a fast, simple, free notepad service. What do I mean by "simple"? It means that the entire site is basically just a wrapper around a textbox. Instead of e-mailing yourself notes or URLs to bookmark yourself from someone else's computer, you can quickly save and retrieve them here in your notepad.
+My Notepad Info is a fast, simple, free notepad service. "Simple" means that the entire site is basically just a wrapper around a textbox. Instead of e-mailing yourself notes or URLs to bookmark yourself from someone else's computer, you can quickly save and retrieve them here in your notepad.
 </p>
 
 <p>
@@ -67,7 +67,7 @@ What does the site do to be "fast and simple"? It's more about what it doesn't d
 <h1>About the Author</h1>
 
 <p>
-I'm Brad Conte, a software developer who keeps a variety of side personal projects going. My areas of specific interest are cryptography and computer security. You can read more about me on my <a href="http://bradconte.com/about_me.html">personal website</a>.
+I'm Brad Conte, a software developer who keeps a variety of side personal projects going. My areas of specific interest are cryptography and Linux. You can read more about me on my <a href="http://bradconte.com/about_me.html">personal website</a>.
 </p>
 
 
