@@ -10,7 +10,7 @@
 
 <div id='login-block'>
 	<p>
-	This is a simple, free, online notepad. Don't resort to e-mailing URLs or notes to yourself, just quickly save them here.
+	Don't resort to using your e-mail as a temporary notepad for URLs or memos. My Notepad Info is a simple, free, web-based notepad designed to get you in and out of your notes as easily as possible.
 	</p>
 
 	<p>
