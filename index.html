@@ -35,21 +35,34 @@
 <p>The goal is to provide a simple, authenticated wrapper around a textbox. That's all. You should be able to easily login, access and edit notes, save them, and leave.</p>
 
 <h2>The Problem</h2>
-
-<p>Smartphones and cloud-y services probably offer convenient solutions for most of life. But unfortunately, life still throws situations at us that our normal tools don't quite handle gracefully.</p>
+<p>
+Smartphones and cloud-y services probably offer convenient solutions for saving most the content we come across. But unfortunately, edge cases in life still throw situations at us that our normal tools don't always handle gracefully, such as:
+</p>
 
 <ul>
-<li>We still want to save URLs from a computer that isn't ours. </li>
-<li>We still want to write notes that wouldn't be convenient to write down later. </li>
-<li>We still need to stash away a blob of text to retrieve later.</li>
-</ul><p>Traditionally what do we do when we encounter bizarre workflows? We e-mail ourself. We use our email accounts as freaking temporary notepads. It's horrible. We go to another website, possibly log out of someone else's account, log into our own account, open a page stick something in the e-mail body, then send it to ourselves. Then we later go get it and delete it. Web-based e-mail clients aren't particularly fast, either, so we have moderately long page load times several times over. (And doing it over a slow Internet connection feels like a pain because it takes 2 minutes to do something that should take 20 seconds. It's manageable, but it feels like an eternity.)</p>
+  <li>save URLs from a computer that isn't ours</li>
+	<li>write notes that wouldn't be convenient to save for later</li>
+	<li>stash away blobs of text to retrieve later</li>
+</ul>
+
+<p>
+Traditionally what do we do when we encounter a semi-bizarre situation? We stuff e-mail ourself. We use our email accounts as freaking temporary notepads. It's horrible. We go to website, possibly log out of someone else's account, log into our own account, open a couple pages, stick something in an e-mail body, then send it to ourselves. Then we later go get it and delete it. Web-based e-mail clients aren't particularly fast, either, so we have moderately long page load times several times over. (And doing it over a slow Internet connection feels like a pain because it takes 2 minutes to do something that should take 20 seconds. It's manageable, but it feels like an eternity.)
+</p>
 
 <h2>The Solution</h2>
+<p>
+Leaving notes should be easy, fast, and painless. Login on the homepage, we show you your notes, you edit them, you save them, you leave. We even try to auto-save them as you go. Slow computer, slow Internet connection, it doesn't matter, the site should run smoothly. If you use the keyboard shortcuts you can get in, leave a note, and get out in 8 seconds.
+</p>
 
-<p>Leaving notes should be easy, fast, and painless. Login on the homepage, we show you your notes, you edit them, you save them, you leave. We even try to auto-save them as you go. Slow computer, slow Internet connection, it doesn't matter, the site should run smoothly. If you use the keyboard shortcuts you can get in, leave a note, and get out in 8 seconds.</p>
+<p>
+The notepad form has minimal bulk, straight-forward design, and a couple of supporting features. It's all about getting a password-protected text box in front of you with your notes as hassle-free as possible.
+</p>
 
-<p>The notepad form has minimal bulk, straight-forward design, and a couple of supporting features. It's all about getting a password-protected text box in front of you with your notes as hassle-free as possible.</p>
-      </section>
+<p>
+What does the site do to be fast and simple? It's more about what it doesn't do than what it does do. It just uses basic techniques for web optimization, like asynchronous JavaScript, no images, minified JS and CSS files, compressed files where possible, minimal DNS lookups, and a nearly flat backend. For the simplicity aspect I just avoid requiring page refreshes and make everything easily accessible through the keyboard. Absolutely nothing fancy at all.
+</p>
+
+</section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/B-Con">B-Con</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
