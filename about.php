@@ -2,11 +2,11 @@
 	include('html/header.html');
 ?>
 
-<h1>More About My Notepad Info</h1>
+<h1>About My Notepad Info</h1>
 
 <h2>The Problem</h2>
 <p>
-Smartphones and cloud-y services probably offer convenient solutions for saving most the content we come across. But unfortunately, edge cases in life still throw situations at us that our normal tools don't always handle gracefully, such as:
+Smartphones and cloud services probably offer convenient solutions for saving most the content we come across. But unfortunately, edge cases in life still throw situations at us that our normal tools don't always handle gracefully, such as:
 </p>
 
 <ul>
@@ -16,7 +16,7 @@ Smartphones and cloud-y services probably offer convenient solutions for saving 
 </ul>
 
 <p>
-Traditionally what do we do when we encounter a semi-bizarre situation? We stuff e-mail ourself. We use our email accounts as freaking temporary notepads. It's horrible. If we get caught without a smartphone, we lose the ability to save things effecitvely. We go to an e-mail provider, possibly log out of someone else's account, log into our own account, open a couple pages, stick something in an e-mail body, then send it to ourselves. Then we later go get it and delete it. Many web-based e-mail clients aren't particularly fast, either, so we have moderately long page load times several times over. (And doing it over a slow Internet connection feels like a pain because it takes 2 minutes to do something that should take 20 seconds. It's manageable, but it feels like an eternity.)
+Traditionally what do we do when we encounter a semi-bizarre situation? We e-mail ourself. We use our email accounts as freaking temporary notepads. That's horrible. If we get caught without a smartphone, we lose the ability to save things effecitvely. We go to an e-mail provider, possibly log out of someone else's account, log into our own account, open a couple pages, stick something in an e-mail body, then send it to ourselves. Then we later go get it and delete it. Many web-based e-mail clients aren't particularly fast, either, so we have moderately long page load times several times over. (And doing it over a slow Internet connection feels like a pain because it takes 2 minutes to do something that should take 20 seconds. It's manageable, but it feels like an eternity.)
 </p>
 
 <h2>The Solution</h2>
@@ -49,7 +49,7 @@ If you are reporting a <b>bug</b>, please provide the status text of the error, 
 		<td><input type='text' class='login-field' id='name' tabindex='1' /></td>
 	</tr>
 	<tr>
-		<td><span class='login-prompt-text'>E-Mail <small>(only if you want a reply):</span></small></td>
+		<td><span class='login-prompt-text'>E-Mail:</span></td>
 		<td><input type='text' class='login-field' id='email' tabindex='2' /></td>
 	</tr>
 	<tr>

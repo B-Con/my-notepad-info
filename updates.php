@@ -4,6 +4,12 @@
 
 <h1>Site Updates</h1>
 
+<h2>March 20, 2012</h2>
+
+<p>
+My Notepad Info has been moved to a new host. The only impact for users is that the site should be a bit faster now, and the sporadic saving errors should be gone.
+</p>
+
 <h2>Febuary, 2012</h2>
 
 <p>

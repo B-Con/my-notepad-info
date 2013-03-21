@@ -4,6 +4,12 @@
 // Constants
 // =============================================================================
 
+// Uncomment to place site in read-only mode.
+// This does NOT assume a read-only database. Writes can still happen. This just
+// denies API attempts to modify user profile data. Database changes made during
+// READ-ONLY mode can be safely discarded (such as user last logged in time).
+//define('READ_ONLY_MODE', 1);
+
 /*
  * Site info.
  */
@@ -89,6 +95,8 @@ define('ERR_SUBMIT_FEEDBACK', 'Sorry, there was an error sending your feedback. 
                               'e-mail manually to: ' . SITE_ADMIN_EMAIL . '.');
 define('ERR_GENERIC_SERVER', 'Sorry, there was a server error. The admins have been alerted.');
 define('ERR_INVALID_LOGIN', 'Username/password combination is incorrect.');
+define('ERR_READ_ONLY', 'The site is in read-only mode for the moment. You can log in and access '.
+                        'your notepad, but no changes can be made to your account.');
 
 // Default notepad and settings for an account.
 $default_notepad_text = "Congratulations on setting up your My Notepad account! The size and ".
@@ -575,10 +583,19 @@ function derivePasswordHash($password, $salt, $pwd_version = CURRENT_PWD_VERSION
 			// docs SAY shouldn't be accepted, but in practice are (hence the bug
 			// in the first place, when this was happening silently).
 		case 2:
-			$return_hash = bcrypt($password, substr($salt, 0, 2));
+			$return_hash = crypt($password, substr($salt, 0, 2));
 		break;
 		case 3:
-			$return_hash = bcrypt($password, $salt);
+			if (defined("CRYPT_BLOWFISH")) {
+				$return_hash = bcrypt($password, $salt);
+				if (strlen($return_hash) <= 10)	{
+					$return_hash = FALSE;
+				}
+			}
+			else {
+				$logger->LogCrit("CRYPT_BLOWFISH not supported by PHP server, v" . phpversion());
+				$return_hash = FALSE;
+			}
 		break;
 		default:
 			$logger->LogCrit("User has pwd_version=[$pwd_version], which is not handled.");
@@ -603,16 +620,22 @@ function changeUserPassword($username, $new_password)
 	if ($new_salt !== FALSE) {
 		$new_password_hash = derivePasswordHash($new_password, $new_salt);
 
-		$q = "UPDATE users SET password_hash=:new_password_hash,salt=:new_salt," .
-		     "pwd_version='" . CURRENT_PWD_VERSION . "' WHERE username=:username LIMIT 1";
-		$args = array(':new_password_hash' => $new_password_hash,
-		              ':new_salt' => $new_salt,
-		              ':username' => $username);
-		$result = $db_link->safeQuery($q, $args, FALSE);
+		if ($new_password_hash !== FALSE)
+		{
+			$q = "UPDATE users SET password_hash=:new_password_hash,salt=:new_salt," .
+				 "pwd_version='" . CURRENT_PWD_VERSION . "' WHERE username=:username LIMIT 1";
+			$args = array(':new_password_hash' => $new_password_hash,
+						  ':new_salt' => $new_salt,
+						  ':username' => $username);
+			$result = $db_link->safeQuery($q, $args, FALSE);
 
-		$logger->LogDebug("User update query: $q");
+			$logger->LogDebug("User update query: $q");
 
-		$success = $result;
+			$success = $result;
+		}
+		else {
+			$logger->LogError("Failed to upgrade password for user $username.");
+		}
 	}
 
 	return $success;
@@ -658,48 +681,52 @@ function createUser($username, $password, $email)
 	if ($salt !== FALSE) {
 		$password_hash = derivePasswordHash($password, $salt);
 
-		$q = "INSERT INTO users (" .
-		     "username," .
-		     "password_hash," .
-		     "salt," .
-		     "pwd_version," .
-		     "email," .
-		     "height," .
-		     "width," .
-		     "notepad_data," .
-		     "font_color," .
-		     "background_color," .
-		     "last_seen," .
-		     "login_counter," .
-		     "autosave) " .
-		     "VALUES (" .
-		     ":username," .
-		     ":password_hash," .
-		     ":salt," .
-		     ":cur_pwd_ver," .
-		     ":email," .
-		     ":height," .
-		     ":width," .
-		     ":notepad_data," .
-		     ":font_color," .
-		     ":background_color," .
-		     ":date," .
-		     ":login_counter," .
-		     ":autosave)";
-		$args = array(':username' => $username,
-					  ':password_hash' => $password_hash,
-					  ':salt' => $salt,
-					  ':cur_pwd_ver' => (string)CURRENT_PWD_VERSION,
-					  ':email' => $email,
-					  ':height' => $defaults['height'],
-					  ':width' => $defaults['width'],
-					  ':notepad_data' => $defaults['notepad_data'],
-					  ':font_color' => $defaults['font_color'],
-					  ':background_color' => $defaults['background_color'],
-					  ':date' => date('Y-m-d'),
-					  ':login_counter' => 0,
-					  ':autosave' => $defaults['autosave']);
-		$result = $db_link->safeQuery($q, $args, false);
+		if ($password_hash !== FALSE)
+		{
+
+			$q = "INSERT INTO users (" .
+				 "username," .
+				 "password_hash," .
+				 "salt," .
+				 "pwd_version," .
+				 "email," .
+				 "height," .
+				 "width," .
+				 "notepad_data," .
+				 "font_color," .
+				 "background_color," .
+				 "last_seen," .
+				 "login_counter," .
+				 "autosave) " .
+				 "VALUES (" .
+				 ":username," .
+				 ":password_hash," .
+				 ":salt," .
+				 ":cur_pwd_ver," .
+				 ":email," .
+				 ":height," .
+				 ":width," .
+				 ":notepad_data," .
+				 ":font_color," .
+				 ":background_color," .
+				 ":date," .
+				 ":login_counter," .
+				 ":autosave)";
+			$args = array(':username' => $username,
+						  ':password_hash' => $password_hash,
+						  ':salt' => $salt,
+						  ':cur_pwd_ver' => (string)CURRENT_PWD_VERSION,
+						  ':email' => $email,
+						  ':height' => $defaults['height'],
+						  ':width' => $defaults['width'],
+						  ':notepad_data' => $defaults['notepad_data'],
+						  ':font_color' => $defaults['font_color'],
+						  ':background_color' => $defaults['background_color'],
+						  ':date' => date('Y-m-d'),
+						  ':login_counter' => 0,
+						  ':autosave' => $defaults['autosave']);
+			$result = $db_link->safeQuery($q, $args, false);
+		}
 
 		if ($result) {
 			$logger->LogInfo("Succesfully registered user $username");
@@ -755,7 +782,7 @@ function loginUser($username, $password, $response, $update_login_ctr = false)
 			$password_hash = derivePasswordHash($password, $salt, $pwd_version);
 
 			// Successful login.
-			if ($password_hash == $password_hash_db) {
+			if ($password_hash === $password_hash_db) {
 				$logger->LogDebug("Logged in $username with pwd_version=$pwd_version");
 				$login_result = $db_row;
 
@@ -813,6 +840,17 @@ function loginUser($username, $password, $response, $update_login_ctr = false)
 	}
 
 	return $login_result;
+}
+
+function siteIsReadOnly($response)
+{
+	read_only = FALSE;
+
+	if (defined('READ_ONLY_MODE')) {
+		$response->setCodeAndStatus('failure', ERR_READ_ONLY);
+	}
+
+	return read_only;
 }
 
 ?>

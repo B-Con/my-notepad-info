@@ -15,15 +15,15 @@ Ever needed to move simple notes, like URLs, from a computer that isn't yours to
 		<td><input type='text' class='login-field' id='username' tabindex='1' autofocus='autofocus' /></td>
 	</tr>
 	<tr>
-		<td><span class='login-prompt-text'>Password <small>(case sensitive)</small>:</span></td>
+		<td><span class='login-prompt-text'>Password:</span></td>
 		<td><input type='password' class='login-field' id='password' tabindex='2' /></td>
 	</tr>
 	<tr>
-		<td><span class='login-prompt-text'>Password <small>(confirm)</small>:</span></td>
+		<td><span class='login-prompt-text'>Confirm Password:</span></td>
 		<td><input type='password' class='login-field' id='password2' tabindex='3' /></td>
 	</tr>
 	<tr>
-		<td><span class='login-prompt-text'>E-Mail <small>(optional)*</small>:</span></td>
+		<td><span class='login-prompt-text'>E-Mail*:</span></td>
 		<td><input type='email' class='login-field' id='email' tabindex='4' /></td>
 	</tr>
 </table>
@@ -38,7 +38,7 @@ By submitting your registration information you are agreeing with the <a href='c
 </form>
 
 <p>
-* <span class='registration-notes'>Your e-mail address is safe, we do not send any unrequested e-mails nor share it with any third parties. You do not have to provide an address, however some features require one: You must have an e-mail in order to reset your password or to get your notepad contents e-mailed to you. You can add or remove an e-mail address for your account at any time after registration.</span>
+* <span class='registration-notes'>Your e-mail address is <strong>optional</strong> and, if you provide it, safe with us. We do not send any unrequested e-mails nor share it with any third parties. You do not have to provide an e-mail, however some features require one: You must have an e-mail in order to reset your password or to get your notepad contents e-mailed to you. You can add or remove an e-mail address for your account at any time after registration.</span>
 </p>
 
 <?php

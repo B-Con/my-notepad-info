@@ -14,7 +14,7 @@
 	</p>
 
 	<p>
-	Log in below or quickly <a href='register.php'>register</a> a free account. For returning visitors, yes, there are <a href='updates.php'>some new changes</a>.
+	Log in below or quickly <a href='register.php'>register</a> a free account. For returning visitors, yes, there have been <a href='updates.php'>some recent changes</a>.
 	</p>
 
 	<form action='#' onsubmit='loginApi(); return(false);'>
