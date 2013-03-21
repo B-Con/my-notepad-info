@@ -14,7 +14,7 @@ define('SITE_ADMIN_EMAIL', 'admin@mynotepad.info');
 /*
  * Password hashing info.
  */
-define('CURRENT_PWD_VERSION',             2);
+define('CURRENT_PWD_VERSION',             3);
 define('SALT_LENGTH',                     22);      // 22 is required by bcrypt.
 define('PWD_WORK_FACTOR',                 '11');    // A string to ensure proper string length.
 define('TMP_PWD_LENGTH',                  10);      // Number characters in temp passwords.
@@ -69,7 +69,7 @@ define('EMAIL_NOTEPAD', "%s,\n\n" .
 						"=============\n" .
 						"%s");
 define('SUC_NOTEPAD_EMAIL', "Your e-mail should be on its way. (Check your SPAM if you don't " .
-                            'see it.');
+                            'see it.)');
 define('SUC_NOTEPAD_EMAIL_LOGIN', "Your e-mail should be on it's way to <b>%s</b>. (Check " .
                                   "your SPAM if you don't see it.)");
 define('ERR_NOTEPAD_EMAIL', 'E-mail could not be delivered to the e-mail address associated with ' .
@@ -566,7 +566,18 @@ function derivePasswordHash($password, $salt, $pwd_version = CURRENT_PWD_VERSION
 			$logger->LogDebug('PWD derivation on: ' . $t);
 			$return_hash = md5($t);
 		break;
+			// This was a mistake. We tried to use CRYPT_BLOWFISH on PHP 5.2, which
+			// didn't support it. PHP silently downgraded the salt format to CRYPT_DES
+			// which was not noticed immediately.
+			//     On new PHP versions, we can emulate this oddity by passing just
+			// the first two characters of the string. This causes CRYPT_DES to be
+			// selected. This string will  include the "$" character which the PHP
+			// docs SAY shouldn't be accepted, but in practice are (hence the bug
+			// in the first place, when this was happening silently).
 		case 2:
+			$return_hash = bcrypt($password, substr($salt, 0, 2));
+		break;
+		case 3:
 			$return_hash = bcrypt($password, $salt);
 		break;
 		default:
