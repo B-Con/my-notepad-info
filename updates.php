@@ -4,6 +4,12 @@
 
 <h1>Site Updates</h1>
 
+<h2>March 20, 2012</h2>
+
+<p>
+My Notepad Info has been moved to a new host. The only impact for users is that the site should be a bit faster now, and the sporadic saving errors should be gone.
+</p>
+
 <h2>Febuary, 2012</h2>
 
 <p>
@@ -59,7 +65,11 @@ I made a few minor styling tweaks. No functionality changes.
 <h2>2007</h2>
 
 <p>
-The site is live.
+The site went live.
+</p>
+
+<p>
+I originally wrote My Notepad Info for myself. Before smartphones, 4G, and high bandwidth, I got tired of e-mailing myself links from school computers. I couldn't find any online notepad that had exactly what I wanted, so I wrote one myself. I wrote the first version from scratch in about 8 hours. It was both a quick hack to get the online notepad I wanted and an excuse to learn a bit about AJAX. I never publicized the site much, it was honestly just for myself.
 </p>
 
 <?php

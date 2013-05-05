@@ -10,7 +10,11 @@
 
 <div id='login-block'>
 	<p>
-	This is a simple, free, online notepad. Log in below or quickly <a href='register.php'>register</a> a free account. For returning visitors, yes, there are <a href='updates.php'>some new changes</a>.
+	Don't resort to using your e-mail as a temporary notepad for URLs or memos. My Notepad Info is a simple, free, web-based notepad designed to get you in and out of your notes as easily as possible.
+	</p>
+
+	<p>
+	Log in below or quickly <a href='register.php'>register</a> a free account. For returning visitors, yes, there have been <a href='updates.php'>some recent changes</a>.
 	</p>
 
 	<form action='#' onsubmit='loginApi(); return(false);'>

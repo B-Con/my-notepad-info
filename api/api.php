@@ -31,7 +31,7 @@ DB structure overview:
 	id                    // Unique, auto-increment.
 	username              // Primary Key.
 	password_hash
-	salt
+	salt                  // For simplicity and legacy support, the salt has its own field.
 	pwd_version           // Tracks what version of the pwd hash derivation is being used.
 	bad_login_counter
 	bad_login_timestamp
@@ -153,6 +153,10 @@ require 'api-lib.php';         // Constants, classes, and functions.
 		// SAVE NOTEPAD DATA: The most used API. Verify user and return the notepad and settings.
 		// -------------------------------------------------------------------------
 		case 'save':
+			if (siteIsReadOnly($response)) {
+				break;
+			}
+
 			$username = base64URLDecode($_REQUEST['username']);
 			$password = base64URLDecode($_REQUEST['password']);
 
@@ -192,22 +196,22 @@ require 'api-lib.php';         // Constants, classes, and functions.
 					$result = $db_link->safeQuery($q, $args, false);
 
 					if ($result === TRUE) {
-						// Client appends the timestamp to the status (simplifies timezones a lot).
+						// Client appends the timestamp to the status.
 						$response->setCodeAndStatus('success', "Notepad $saved_verbage ");
 					}
 					else {
 						$response->setCodeAndStatus('failure', 'Notepad could not be ' .
-						                               $saved_verbage . '.');
+						                            $saved_verbage . '.');
 					}
 				}
 				else {
-					$logger->LogInfo('Attempted save with too big of a notepad.');
+					$logger->LogInfo('Attempted save of too long a notepad.');
 					$response->setCodeAndStatus('failure', ERR_NOTEPAD_TOO_BIG);
 				}
 			}
 			else {
 				$logger->LogWarn("User $username attempted to save with invalid credentials. " .
-				                 'Password ' . (strlen($password) ? 'was' : "wasn't") . ' supplied');
+				                 'Password ' . (strlen($password) ? 'was' : "wasn't") . ' present.');
 				$response->appendStatus(ERR_SAVE_LOGIN_FAILED);
 			}
 		break;
@@ -217,6 +221,10 @@ require 'api-lib.php';         // Constants, classes, and functions.
 		// CHANGE A USER'S PROFILE INFO: Update all the fields they explicitly set.
 		// -------------------------------------------------------------------------
 		case 'change_profile':
+			if (siteIsReadOnly($response)) {
+				break;
+			}
+			
 			$username = base64URLDecode($_REQUEST['username']);
 			$old_password = base64URLDecode($_REQUEST['old_password']);
 			$new_password = base64URLDecode($_REQUEST['new_password']);
@@ -278,6 +286,10 @@ require 'api-lib.php';         // Constants, classes, and functions.
 		// REGISTER A NEW USER: Create a new user with a unique username and ID.
 		// -------------------------------------------------------------------------
 		case 'register':
+			if (siteIsReadOnly($response)) {
+				break;
+			}
+			
 			$username = base64URLDecode($_REQUEST['username']);
 			$password = base64URLDecode($_REQUEST['password']);
 			$email = base64URLDecode($_REQUEST['email']);
@@ -310,6 +322,10 @@ require 'api-lib.php';         // Constants, classes, and functions.
 		// RESET A PASSWORD: Reset a password based on a username. Requires them to have an e-mail.
 		// -------------------------------------------------------------------------
 		case 'reset_pwd':
+			if (siteIsReadOnly($response)) {
+				break;
+			}
+			
 			$username = base64URLDecode($_REQUEST['username']);
 
 			$db_row = loadUserInfo($username, $response);

@@ -100,8 +100,9 @@ function setStatusText(displayStatus, statusText) {
 }
 
 // Sizes are integers and in pixels.
+// The notepad element has it's "box-sizing" property set to "border-box".
 function adjustNotepadSize(method, newHeight, newWidth) {
-	var notepadElmt, finalHeight, finalWidth;
+	var notepadElmt, finalHeight = 0, finalWidth = 0;
 
 	// Sanity checks and special case handling.
 	if (newHeight > 3000) {
@@ -113,17 +114,15 @@ function adjustNotepadSize(method, newHeight, newWidth) {
 
 	// Adjust the size of the notepad. Use the 'method' to explicitly set the absolute new size
 	// or to merely increment the current size by the specified amount.
-	notepadElmt = document.getElementById('notepad');
 	switch (method) {
 		case 'set':
-			// Absolute value of 0 means to reset to default.
+			// Special case of 0 means to reset to default.
 			if (newHeight === 0) {
 				finalHeight = DEFAULT_NOTEPAD_HEIGHT;
 			}
 			else {
 				finalHeight = newHeight;
 			}
-			$('#notepad').css('height', finalHeight + 'px');
 
 			if (newWidth === 0) {
 				finalWidth = DEFAULT_NOTEPAD_WIDTH;
@@ -131,20 +130,23 @@ function adjustNotepadSize(method, newHeight, newWidth) {
 			else {
 				finalWidth = newWidth;
 			}
-			$('#notepad').css('width', finalWidth + 'px');
 
+			$('#notepad').outerHeight(finalHeight.toString() + 'px');
+			$('#notepad').outerWidth(finalWidth.toString() + 'px');
 		break;
 		case 'increment':
+			// Special case of 0 means do not increment.
 			if (newHeight !== 0) {
-				newHeight += parseInt($('#notepad').css('height').replace('px', ''), 10);
-				$('#notepad').css('height', newHeight+ 'px');
+				finalHeight = newHeight + parseInt($('#notepad').outerHeight());
+				$('#notepad').outerHeight(finalHeight.toString() + 'px');
 			}
 			if (newWidth !== 0) {
-				newWidth += parseInt($('#notepad').css('width').replace('px', ''), 10);
-				$('#notepad').css('width', newWidth + 'px');
+				finalWidth = newWidth + parseInt($('#notepad').outerWidth());
+				$('#notepad').outerWidth(finalWidth.toString() + 'px');
 			}
 		break;
 	}
+
 }
 
 // Input in hex.

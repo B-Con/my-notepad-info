@@ -2,24 +2,54 @@
 	include('html/header.html');
 ?>
 
-<h1>Contact</h1>
+<h1>About My Notepad Info</h1>
 
+<h2>The Problem</h2>
+<p>
+Smartphones and cloud services probably offer convenient solutions for saving most the content we come across. But unfortunately, edge cases in life still throw situations at us that our normal tools don't always handle gracefully, such as:
+</p>
+
+<ul>
+	<li>save URLs from a computer that isn't ours</li>
+	<li>write notes that wouldn't be convenient to save for later</li>
+	<li>stash away blobs of text to retrieve later</li>
+</ul>
+
+<p>
+Traditionally what do we do when we encounter a semi-bizarre situation? We e-mail ourself. We use our email accounts as freaking temporary notepads. That's horrible. If we get caught without a smartphone, we lose the ability to save things effecitvely. We go to an e-mail provider, possibly log out of someone else's account, log into our own account, open a couple pages, stick something in an e-mail body, then send it to ourselves. Then we later go get it and delete it. Many web-based e-mail clients aren't particularly fast, either, so we have moderately long page load times several times over. (And doing it over a slow Internet connection feels like a pain because it takes 2 minutes to do something that should take 20 seconds. It's manageable, but it feels like an eternity.)
+</p>
+
+<h2>The Solution</h2>
+<p>
+Leaving notes should be easy, fast, and painless. You login on the homepage, we show you your notes, you edit them, you save them, you leave. We even try to auto-save them as you go. Slow computer, slow Internet connection, it doesn't matter, the site should run smoothly. If you use the keyboard shortcuts you can get in, leave a note, and get out in 8 seconds.
+</p>
+
+<p>
+The notepad form has a minimal straight-forward design and a couple of supporting features. It's all about getting a password-protected text box in front of you with your notes as hassle-free as possible.
+</p>
+
+<p>
+What does the site do to be fast and simple? It's more about what it doesn't do than what it does do. It just uses basic techniques for web optimization, like asynchronous JavaScript, no images, minified JS and CSS files, compressed files where possible, minimal DNS lookups, and a nearly flat backend. For the simplicity aspect I just avoid requiring page refreshes and make everything easily accessible through the keyboard. Absolutely nothing fancy at all.
+</p>
+
+
+<h1>Contact</h1>
 <p>
 Comments? Suggestions? Bugs? Feel free to give feedback on any bugs you find, features you want, or observations you have. Use the form here or send a direct e-mail to <a href='mailto:admin@mynotepad.info'>admin@mynotepad.info</a>.
 </p>
 
 <p>
-If you are reporting a <b>bug</b>, please provide the status text from the error, what you were doing when the error happened, your username, and about how long ago it happened (if it was more than a few minutes). These details are often necessary to resolve the issue.
+If you are reporting a <b>bug</b>, please provide the status text of the error, what you were doing when the error happened, your username, and about how long ago it happened (if it was more than a few minutes). These details are often necessary to resolve the issue.
 </p>
 
 <form action='#' onsubmit='submitFeedbackApi(); return(false);'>
 <table>
 	<tr>
-		<td><span class='login-prompt-text'>Name / Username:</span></td>
+		<td><span class='login-prompt-text'>Username:</span></td>
 		<td><input type='text' class='login-field' id='name' tabindex='1' /></td>
 	</tr>
 	<tr>
-		<td><span class='login-prompt-text'>E-Mail <small>(only if you want a reply):</span></small></td>
+		<td><span class='login-prompt-text'>E-Mail:</span></td>
 		<td><input type='text' class='login-field' id='email' tabindex='2' /></td>
 	</tr>
 	<tr>
@@ -38,36 +68,10 @@ If you are reporting a <b>bug</b>, please provide the status text from the error
 </form>
 
 
-<h1>About the Site</h1>
-
-<p>
-My Notepad Info is a fast, simple, free notepad service. What do I mean by "simple"? It means that the entire site is basically just a wrapper around a textbox. Instead of e-mailing yourself notes or URLs to bookmark yourself from someone else's computer, you can quickly save and retrieve them here in your notepad.
-</p>
-
-<p>
-This isn't a novel idea, a quick Google search will turn up dozens and dozens of similar services. But originally it did have a somewhat unique emphasis on speed and simplicity. Many other notepads weren't as simple and easy to use. Some were downright clunky, requiring large pages be loaded and refreshed several times over the course of logging in, modifying notes, saving notes, and logging out. Some were intended only for one-time use or otherwise impractical for someone who needs to constantly store and edit notes.
-</p>
-
-<p>
-I originally wrote My Notepad Info for myself, and it continues to exist primarily as a personal side-project. Back in the mid 2000s (before smartphones, 4G, and high bandwidth) I got tired of e-mailing myself links from school computers. I couldn't find any online notepad that had exactly what I wanted so I wrote one myself. I wrote the first version from scratch in about 8 hours. It was both a quick hack to get the online notepad I wanted and an excuse to learn a bit about AJAX. I never really publicized the site, it was honestly just for myself. Once I realized that other people had been using it for years I came back, cleaned it up a bit, and added some features. It still has something of a "quick hack" feeling to it (particularly in the theme), but it's just a hobby project. The source code is available <a href='https://github.com/B-Con/my-notepad-info'>on GitHub</a>. I keep a <a href='updates.php'>list of important updates</a>.
-</p>
-
-<p>
-With time this site becomes less relevant. Smartphones and cloud service integration provide so many more convenient ways of doing the same thing. But interestingly, years later, despite having a 4G smartphone and the Google ecosystem,I still use it occationally. I presume the need isn't completely dead and I will keep the site up so long as I can imagine using it.
-</p>
-
-
-<h1>Speed and Simplicity</h1>
-
-<p>
-What does the site do to be "fast and simple"? It's more about what it doesn't do than what it does do. It just uses basic techniques for web optimization, like asynchronous JavaScript, no images, minified JS and CSS files, compressed files where possible, minimal DNS lookups, and a nearly flat backend. For the simplicity aspect I just avoid requiring page refreshes and make everything easily accessible through the keyboard. Absolutely nothing fancy at all.
-</p>
-
-
 <h1>About the Author</h1>
 
 <p>
-I'm Brad Conte, a software developer who keeps a variety of side personal projects going. My areas of specific interest are cryptography and computer security. You can read more about me on my <a href="http://bradconte.com/about_me.html">personal website</a>.
+I'm Brad Conte, a software developer who keeps a variety of side personal projects going. My areas of specific interest are cryptography and Linux. You can read more about me on my <a href="http://bradconte.com/about_me.html">personal website</a>.
 </p>
 
 
