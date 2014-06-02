@@ -177,7 +177,14 @@ require 'api-lib.php';         // Constants, classes, and functions.
 				if ($width < 50 || $width > 3000)
 					$width = $defaults['width'];
 
-				if (strlen($notepad_data) < MAX_NOTEPAD_SIZE) {
+                $args = array(':notepad_data' => base64URLDecode($_REQUEST['notepad_data']),
+                    ':height' => $height,
+                    ':width' => $width,
+                    ':font_color' => $font_color,
+                    ':background_color' => $background_color,
+                    ':autosave' => ($_REQUEST['autosave'] == 'true') ? 1 : 0,
+                    ':username' => $username);
+				if (strlen($args[':notepad_data']) < MAX_NOTEPAD_SIZE) {
 					$q = 'UPDATE users SET ' .
 						 "notepad_data=:notepad_data," .
 						 "height=:height," .
@@ -186,13 +193,6 @@ require 'api-lib.php';         // Constants, classes, and functions.
 						 "background_color=:background_color," .
 						 "autosave=:autosave " .
 						 "WHERE username=:username LIMIT 1";
-					$args = array(':notepad_data' => base64URLDecode($_REQUEST['notepad_data']),
-								  ':height' => $height,
-								  ':width' => $width,
-								  ':font_color' => $font_color,
-								  ':background_color' => $background_color,
-								  ':autosave' => ($_REQUEST['autosave'] == 'true') ? 1 : 0,
-								  ':username' => $username);
 					$result = $db_link->safeQuery($q, $args, false);
 
 					if ($result === TRUE) {
@@ -224,7 +224,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 			if (siteIsReadOnly($response)) {
 				break;
 			}
-			
+
 			$username = base64URLDecode($_REQUEST['username']);
 			$old_password = base64URLDecode($_REQUEST['old_password']);
 			$new_password = base64URLDecode($_REQUEST['new_password']);
@@ -289,7 +289,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 			if (siteIsReadOnly($response)) {
 				break;
 			}
-			
+
 			$username = base64URLDecode($_REQUEST['username']);
 			$password = base64URLDecode($_REQUEST['password']);
 			$email = base64URLDecode($_REQUEST['email']);
@@ -325,7 +325,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 			if (siteIsReadOnly($response)) {
 				break;
 			}
-			
+
 			$username = base64URLDecode($_REQUEST['username']);
 
 			$db_row = loadUserInfo($username, $response);

@@ -33,7 +33,7 @@ define('DEV_URANDOM',              '/dev/urandom'); // Host's entropy source.
 
 define('DB_TRY_LIMIT',                    3);       // Coordinate with the backoff time.
 
-define(MAX_NOTEPAD_SIZE,                  900000);  // 900 K
+define('MAX_NOTEPAD_SIZE',                900000);  // 900 K
 
 /*
  * API response messages.
@@ -154,6 +154,7 @@ class DBWrapper
 		 * Connect to the DB.
 		 * Retry connecting, there seem to be random database failures on the host.
 		 */
+		$success = FALSE;
 		for ($try_count = 1; !$success && $try_count <= DB_TRY_LIMIT; $try_count++) {
 			$success = TRUE;
 
@@ -844,13 +845,13 @@ function loginUser($username, $password, $response, $update_login_ctr = false)
 
 function siteIsReadOnly($response)
 {
-	read_only = FALSE;
+	$read_only = FALSE;
 
 	if (defined('READ_ONLY_MODE')) {
 		$response->setCodeAndStatus('failure', ERR_READ_ONLY);
 	}
 
-	return read_only;
+	return $read_only;
 }
 
 ?>
