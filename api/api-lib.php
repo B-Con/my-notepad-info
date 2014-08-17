@@ -503,7 +503,7 @@ function generateRandomString($length /* <= 32*/)
 
 	$return_rand_str = FALSE;
 
-	if ($num_bytes <= 32) {
+	if ($length <= 32) {
 		$fp = @fopen('/dev/urandom', 'rb');
 
 		if ($fp !== FALSE) {
