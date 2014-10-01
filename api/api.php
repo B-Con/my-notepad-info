@@ -342,7 +342,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 					 * Generate a new random password and send it to them.
 					 */
 
-					$new_password = generate_random_string(TMP_PWD_LENGTH);
+					$new_password = generateRandomString(TMP_PWD_LENGTH);
 					$logger->LogDebug("New password: $new_password");
 
 					$result = changeUserPassword($username, $new_password);
