@@ -52,8 +52,7 @@ define('SUC_REGISTERED', 'You have registered. :-) Log in on the ' .
                          'available</a>.');
 define('ERR_USERNAME_TAKEN', 'Sorry, that username has already been taken. Please try a ' .
                              'different one.');
-define('EMAIL_PWD_RESET', "Your password reset for My Notepad Info",
-                          'This is an automatically generated e-mail confirming your password ' .
+define('EMAIL_PWD_RESET', 'This is an automatically generated e-mail confirming your password ' .
                           "reset for http://MyNotepad.Info .\n\n" .
                           "Your account with username %s has had its password reset to the " .
                           "following:\n\n" .
