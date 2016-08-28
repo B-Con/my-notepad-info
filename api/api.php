@@ -350,7 +350,7 @@ require 'api-lib.php';         // Constants, classes, and functions.
 					if ($result === TRUE) {
 						// We need to ensure the e-mail was successfully sent, otherwise they won't
 						// be able to log in.
-						$result = emailUser($username, $email,
+						$result = emailUser($username, $email, 'Your password reset'
 						                     sprintf(EMAIL_PWD_RESET, $username, $new_password));
 
 						if ($result === TRUE)
